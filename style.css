@@ -6,14 +6,16 @@
 }
 
 body {
-    background-image: url("https://source.unsplash.com/1600x900/?landscape");
+    background-color: #1a1a1a;
     background-size: cover;
-    height: 100vh; /* ALTURA */
-    width: 100vw; /* LARGURA */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    transition: background-image 0.5s ease-in-out;
 }
 
 .caixa-maior {
@@ -22,29 +24,34 @@ body {
     /* TRANSPARÊNCIA */
     width: 95%;
     /* LARGURA */
-    max-width: 450px;
-    /* LARGURA MÁXIMA */
+    max-width: 550px; /* Aumentado de 450px para 550px */
     border-radius: 25px;
     /* ARREDONDAR BORDA */
-    padding: 20px;
+    padding: 30px; /* Aumentado um pouco o respiro interno */
 }
 
 .lupa {
-    height: 20px;
-    width: 20px;
+    color: #ffffff;
+    font-size: 18px;
 }
 
 button {
     border: none;
-    padding: 10px;
-    background-color: #7c7c7c;
+    padding: 12px;
+    background-color: #333333;
     cursor: pointer;
     border-radius: 50%;
     float: right;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Tamanho fixo para evitar saltos */
+    height: 45px;
 }
 
 button:hover {
-    background-color: #7c7c7c;
+    background-color: #444444; /* Leve destaque no hover */
 }
 
 input {
@@ -54,28 +61,41 @@ input {
     padding: 10px;
     background-color: #7c7c7c2b;
     color: #ffffff;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px); /* Ajustado para o novo botão */
     font-size: 24px;
 }
 
 .caixa-media {
-    margin-top: 30px;
-    /* DISTÂNCIA */
+    margin-top: 20px; /* Reduzido de 30px */
 }
 
 .cidade {
     color: #ffffff;
     font-size: 28px;
-    /* TAMANHO */
 }
 
 .tempo {
     color: #ffffff;
-    margin-top: 30px;
-    font-size: 30px;
+    margin-top: 15px; /* Reduzido de 30px */
+    font-size: 40px; /* Aumentado para destaque */
+}
+
+.icone {
+    display: block;
+    margin: 10px 0; /* Reduzido de 20px */
+    height: 90px;
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.4));
 }
 
 .umidade {
     color: #ffffff;
-    margin-top: 30px;
+    margin-top: 15px; /* Reduzido de 30px */
+}
+
+.versao {
+    color: #7c7c7c;
+    font-size: 15px;
+    text-align: right;
+    margin-top: 15px;
+    margin-bottom: -15px;
 }
