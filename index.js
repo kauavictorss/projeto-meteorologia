@@ -19,7 +19,7 @@ function alternarCarregamento(carregando) {
     }
 }
 
-function colocarNaTela(dados) {
+function exibirResultado(dados) {
     if (dados.cod === "404") {
         document.querySelector(".cidade").innerHTML = "Cidade não encontrada"
         document.querySelector(".tempo").innerHTML = ""
@@ -35,12 +35,12 @@ function colocarNaTela(dados) {
 
     imgFundo.onload = () => {
         document.body.style.backgroundImage = `url('${urlFundo}')`
-        
+
         document.querySelector(".cidade").innerHTML = "Tempo em " + dados.name
         document.querySelector(".tempo").innerHTML = Math.floor(dados.main.temp) + "°C"
         document.querySelector(".icone").src = "https://openweathermap.org/img/wn/" + dados.weather[0].icon + ".png"
         document.querySelector(".umidade").innerHTML = "Umidade: " + dados.main.humidity + "%"
-        
+
         alternarCarregamento(false)
     }
 
@@ -54,7 +54,7 @@ function colocarNaTela(dados) {
 
 async function buscarCidade(cidade) {
     alternarCarregamento(true) // Inicia o spinner
-    
+
     try {
         const resposta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)}&appid=${chave}&units=metric`)
         const dados = await resposta.json()
@@ -65,7 +65,7 @@ async function buscarCidade(cidade) {
             return
         }
 
-        colocarNaTela(dados)
+        exibirResultado(dados)
     } catch (erro) {
         console.error("Erro na busca:", erro)
         alert("Ocorreu um erro ao tentar buscar os dados.")
@@ -73,7 +73,7 @@ async function buscarCidade(cidade) {
     }
 }
 
-function cliqueiNoBotao() {
+function buscarDados() {
     let cidade = document.querySelector(".input-cidade").value
 
     if (!cidade) {
@@ -87,13 +87,13 @@ function cliqueiNoBotao() {
 // Adiciona evento para pesquisar ao apertar Enter
 document.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        cliqueiNoBotao()
+        buscarDados()
     }
 })
 
 /*
 CLICA NO BOTÃO
-    -> CHAMA A FUNÇÃO cliqueiNoBotão()
+    -> CHAMA A FUNÇÃO buscarDados()
     -> Vai no INPUT e pega o que está lá dentro
     -> PASSAR a cidade para o servidor
 

@@ -94,8 +94,43 @@ input {
 
 .versao {
     color: #7c7c7c;
-    font-size: 15px;
+    font-size: 10px;
     text-align: right;
-    margin-top: 15px;
-    margin-bottom: -15px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+/* RESPONSIVIDADE (MOBILE) */
+@media (max-width: 480px) {
+    .caixa-maior {
+        width: 90%;
+        padding: 15px; /* Reduzido de 20px */
+    }
+
+    input {
+        font-size: 18px;
+        width: calc(100% - 55px);
+    }
+
+    .caixa-media {
+        margin-top: 15px; /* Reduzido */
+    }
+
+    .cidade {
+        font-size: 20px; /* Reduzido */
+    }
+
+    .tempo {
+        font-size: 28px; /* Reduzido */
+        margin-top: 10px; /* Reduzido */
+    }
+
+    .icone {
+        height: 60px; /* Reduzido */
+        margin: 5px 0; /* Reduzido */
+    }
+
+    .umidade {
+        margin-top: 10px; /* Reduzido */
+    }
 }
