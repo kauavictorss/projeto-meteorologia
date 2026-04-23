@@ -6,7 +6,7 @@
 
 let chave = '9718161ba03c5b28d7af252b78fea3b7'
 
-function alternarCarregamento(carregando) {
+function carregarBusca(carregando) {
     const lupa = document.querySelector(".lupa")
     const spinner = document.querySelector("#spinner")
     
@@ -25,7 +25,7 @@ function exibirResultado(dados) {
         document.querySelector(".tempo").innerHTML = ""
         document.querySelector(".umidade").innerHTML = ""
         document.querySelector(".icone").src = ""
-        alternarCarregamento(false)
+        carregarBusca(false)
         return
     }
 
@@ -41,19 +41,19 @@ function exibirResultado(dados) {
         document.querySelector(".icone").src = "https://openweathermap.org/img/wn/" + dados.weather[0].icon + ".png"
         document.querySelector(".umidade").innerHTML = "Umidade: " + dados.main.humidity + "%"
 
-        alternarCarregamento(false)
+        carregarBusca(false)
     }
 
     imgFundo.onerror = () => {
         // Se a imagem falhar, mostramos os dados mesmo assim e paramos o spinner
-        alternarCarregamento(false)
+        carregarBusca(false)
         document.querySelector(".cidade").innerHTML = "Tempo em " + dados.name
         // ... (restante do código de exibição)
     }
 }
 
 async function buscarCidade(cidade) {
-    alternarCarregamento(true) // Inicia o spinner
+    carregarBusca(true) // Inicia o spinner
 
     try {
         const resposta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)}&appid=${chave}&units=metric`)
@@ -61,7 +61,7 @@ async function buscarCidade(cidade) {
 
         if (resposta.status === 401) {
             alert("Erro 401: A chave da API foi recusada.")
-            alternarCarregamento(false)
+            carregarBusca(false)
             return
         }
 
@@ -69,7 +69,7 @@ async function buscarCidade(cidade) {
     } catch (erro) {
         console.error("Erro na busca:", erro)
         alert("Ocorreu um erro ao tentar buscar os dados.")
-        alternarCarregamento(false)
+        carregarBusca(false)
     }
 }
 
