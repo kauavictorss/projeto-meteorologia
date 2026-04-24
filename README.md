@@ -63,3 +63,4 @@ Este projeto foi desenvolvido como parte de um desafio prático do **[DevClub](h
 
 - **Desafio:** Projeto Integrador DevClub  
 - **Mentor:** [Rodolfo Mori](https://github.com/rodolfomori)
+- **Versão:** v1.1.0
