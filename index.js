@@ -45,7 +45,8 @@ async function buscarCidade(cidade) {
     carregarBusca(true) 
     
     try {
-        const resposta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)}&appid=${chave}&units=metric`)
+        // Adicionado &lang=pt_br para melhorar a precisão em português
+        const resposta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)}&appid=${chave}&lang=pt_br&units=metric`)
         const dados = await resposta.json()
 
         if (resposta.status === 401) {
@@ -64,7 +65,7 @@ async function buscarCidade(cidade) {
 
 // Função que pega o nome da cidade no input (Refatorada)
 function iniciarBusca() {
-    let cidade = document.querySelector(".input-cidade").value
+    let cidade = document.querySelector(".input-cidade").value.trim() // .trim() remove espaços inúteis no início/fim
 
     if (!cidade) {
         alert("Digite o nome de uma cidade!")
