@@ -1,6 +1,6 @@
 # 🌦️ Projeto Meteorologia - DevClub
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-v1.0.0-blue)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-v1.1.0-blue)
 ![Status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
 
 Uma aplicação de previsão do tempo moderna, rápida e responsiva, desenvolvida para consultar dados meteorológicos em tempo real de qualquer cidade do mundo.
