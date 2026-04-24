@@ -1,11 +1,7 @@
-// Passo 1 -> Saber quando o Botão foi clicado
-// Passo 2 -> Pegar o que está dentro do ‘INPUT’
-// Passo 3 -> Ir no servidor (OperWeather) e pegar as info. do tempo atualizadas
-// Passo 4 -> Organizar as infos que chegaram
-// Passo 5 -> Colocar as infos na tela
-
+// Chave da API
 let chave = '9718161ba03c5b28d7af252b78fea3b7'
 
+// Função que controla o visual do carregamento (Spinner vs Lupa)
 function carregarBusca(carregando) {
     const lupa = document.querySelector(".lupa")
     const spinner = document.querySelector("#spinner")
@@ -19,6 +15,7 @@ function carregarBusca(carregando) {
     }
 }
 
+// Função que coloca os dados na tela e troca o fundo
 function exibirResultado(dados) {
     if (dados.cod === "404") {
         document.querySelector(".cidade").innerHTML = "Cidade não encontrada"
@@ -29,38 +26,30 @@ function exibirResultado(dados) {
         return
     }
 
-    const imgFundo = new Image()
+    // 1. ATUALIZAÇÃO IMEDIATA: O usuário recebe a temperatura instantaneamente
+    document.querySelector(".cidade").innerHTML = "Tempo em " + dados.name
+    document.querySelector(".tempo").innerHTML = Math.floor(dados.main.temp) + "°C"
+    document.querySelector(".icone").src = "https://openweathermap.org/img/wn/" + dados.weather[0].icon + ".png"
+    document.querySelector(".umidade").innerHTML = "Umidade: " + dados.main.humidity + "%"
+
+    // 2. FUNDO EM SEGUNDO PLANO: A imagem começa a carregar sem travar os dados
     const urlFundo = `https://unsplash.it/1600/900?${dados.name.replace(/\s/g, '')}`
-    imgFundo.src = urlFundo
+    document.body.style.backgroundImage = `url('${urlFundo}')`
 
-    imgFundo.onload = () => {
-        document.body.style.backgroundImage = `url('${urlFundo}')`
-
-        document.querySelector(".cidade").innerHTML = "Tempo em " + dados.name
-        document.querySelector(".tempo").innerHTML = Math.floor(dados.main.temp) + "°C"
-        document.querySelector(".icone").src = "https://openweathermap.org/img/wn/" + dados.weather[0].icon + ".png"
-        document.querySelector(".umidade").innerHTML = "Umidade: " + dados.main.humidity + "%"
-
-        carregarBusca(false)
-    }
-
-    imgFundo.onerror = () => {
-        // Se a imagem falhar, mostramos os dados mesmo assim e paramos o spinner
-        carregarBusca(false)
-        document.querySelector(".cidade").innerHTML = "Tempo em " + dados.name
-        // ... (restante do código de exibição)
-    }
+    // 3. FINALIZAÇÃO: O spinner para porque a tarefa principal foi concluída
+    carregarBusca(false)
 }
 
+// Função que vai no servidor buscar a temperatura
 async function buscarCidade(cidade) {
-    carregarBusca(true) // Inicia o spinner
-
+    carregarBusca(true) 
+    
     try {
         const resposta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)}&appid=${chave}&units=metric`)
         const dados = await resposta.json()
 
         if (resposta.status === 401) {
-            alert("Erro 401: A chave da API foi recusada.")
+            alert("Erro 401: Chave da API recusada ou ainda não ativada.")
             carregarBusca(false)
             return
         }
@@ -73,7 +62,8 @@ async function buscarCidade(cidade) {
     }
 }
 
-function buscarDados() {
+// Função que pega o nome da cidade no input (Refatorada)
+function iniciarBusca() {
     let cidade = document.querySelector(".input-cidade").value
 
     if (!cidade) {
@@ -84,20 +74,9 @@ function buscarDados() {
     buscarCidade(cidade)
 }
 
-// Adiciona evento para pesquisar ao apertar Enter
+// Atalho da tecla Enter
 document.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        buscarDados()
+        iniciarBusca()
     }
 })
-
-/*
-CLICA NO BOTÃO
-    -> CHAMA A FUNÇÃO buscarDados()
-    -> Vai no INPUT e pega o que está lá dentro
-    -> PASSAR a cidade para o servidor
-
-    Math.floor -> Ferramenta do Js para arredondar valores
-
-    Para aplicar o projeto à internet (tornar uma aplicação web), usa-se NETLIFY DROP ou github pages
-*/
