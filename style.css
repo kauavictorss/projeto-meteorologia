@@ -27,12 +27,19 @@ body {
     max-width: 550px; /* Aumentado de 450px para 550px */
     border-radius: 25px;
     /* ARREDONDAR BORDA */
-    padding: 30px; /* Aumentado um pouco o respiro interno */
+    padding:25px;
 }
 
 .lupa {
     color: #ffffff;
     font-size: 18px;
+}
+
+.container-busca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 button {
@@ -41,13 +48,13 @@ button {
     background-color: #333333;
     cursor: pointer;
     border-radius: 50%;
-    float: right;
     transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px; /* Tamanho fixo para evitar saltos */
+    width: 45px; /* Tamanho fixo */
     height: 45px;
+    flex-shrink: 0; /* Impede que o botão diminua */
 }
 
 button:hover {
@@ -58,15 +65,16 @@ input {
     border: none;
     outline: none;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 15px;
     background-color: #7c7c7c2b;
     color: #ffffff;
-    width: calc(100% - 60px); /* Ajustado para o novo botão */
-    font-size: 24px;
+    font-size: 20px;
+    flex: 1; /* Ocupa o espaço disponível */
+    height: 45px; /* Mesma altura do botão */
 }
 
 .caixa-media {
-    margin-top: 20px; /* Reduzido de 30px */
+    margin-top: 15px;
 }
 
 .cidade {
@@ -76,35 +84,35 @@ input {
 
 .tempo {
     color: #ffffff;
-    margin-top: 15px; /* Reduzido de 30px */
+    margin-top: 15px;
     font-size: 40px; /* Aumentado para destaque */
 }
 
 .icone {
     display: block;
-    margin: 10px 0; /* Reduzido de 20px */
+    margin: 10px 0;
     height: 90px;
     filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.4));
 }
 
 .umidade {
     color: #ffffff;
-    margin-top: 15px; /* Reduzido de 30px */
+    margin-top: 15px;
 }
 
 .versao {
     color: #7c7c7c;
-    font-size: 10px;
+    font-size: 15px;
     text-align: right;
-    margin-top: 10px;
-    margin-bottom: -10px;
+    margin-top: 15px;
+    margin-bottom: -15px;
 }
 
 /* RESPONSIVIDADE (MOBILE) */
 @media (max-width: 480px) {
     .caixa-maior {
         width: 90%;
-        padding: 15px; /* Reduzido de 20px */
+        padding: 15px;
     }
 
     input {
@@ -113,24 +121,24 @@ input {
     }
 
     .caixa-media {
-        margin-top: 15px; /* Reduzido */
+        margin-top: 15px;
     }
 
     .cidade {
-        font-size: 20px; /* Reduzido */
+        font-size: 20px;
     }
 
     .tempo {
-        font-size: 28px; /* Reduzido */
-        margin-top: 10px; /* Reduzido */
+        font-size: 28px;
+        margin-top: 10px;
     }
 
     .icone {
-        height: 60px; /* Reduzido */
-        margin: 5px 0; /* Reduzido */
+        height: 60px;
+        margin: 5px 0;
     }
 
     .umidade {
-        margin-top: 10px; /* Reduzido */
+        margin-top: 10px;
     }
 }

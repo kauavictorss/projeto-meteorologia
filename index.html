@@ -14,14 +14,16 @@
 <body>
     <div class="caixa-maior">
 
-        <input class="input-cidade" placeholder="Digite a cidade">
+        <div class="container-busca">
+            <input class="input-cidade" placeholder="Digite a cidade">
 
-        <button onclick="iniciarBusca()">
-            <i class="bi bi-search lupa"></i>
-            <div class="spinner-border spinner-border-sm text-light d-none" role="status" id="spinner">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </button>
+            <button onclick="iniciarBusca()">
+                <i class="bi bi-search lupa"></i>
+                <div class="spinner-border spinner-border-sm text-light d-none" role="status" id="spinner">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+        </div>
 
         <div class="caixa-media">
             <h2 class="cidade">Digite uma cidade...</h2>
